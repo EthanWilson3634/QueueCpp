@@ -9,8 +9,7 @@ class Queue {
 protected:
 	int size; // Current amount of nodes
 	int capacity; // Maximum amount of nodes
-	Node *head, *tail; // Front and back of queue
-	Node *buffer;
+	Node *head, *tail; // Front and back of queue. Add at the front take from the back
 
 public:
 	Queue(); // Default constructor

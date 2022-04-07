@@ -2,12 +2,14 @@
 
 Queue::Queue() {
 	capacity = DEFAULT_SIZE;
-	buffer = new Node[capacity];
+	head = new Node[capacity];
+	tail = head;
 }
 
 Queue::Queue(int inputCapacity) {
 	capacity = inputCapacity;
-	buffer = new Node[capacity];
+	head = new Node[capacity];
+	tail = head;
 }
 
 void Queue::enqueue(Node inputNode) {
@@ -15,12 +17,15 @@ void Queue::enqueue(Node inputNode) {
 		return; // Either full or need to compact
 	}
 	else {
-		tail* = inputNode;
+		tail = &inputNode;
+		tail++;
 	}
 }
 
 Node Queue::dequeue() {
-
+	Node* temp = head;
+	head++;
+	return *temp;
 }
 
 Node* Queue::getHead() {

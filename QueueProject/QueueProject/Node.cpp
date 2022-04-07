@@ -1,7 +1,7 @@
 #include "Node.h"
 
 Node::Node() {
-	data = 1;
+	data = 2;
 }
 
 Node::Node(int inputData) {
