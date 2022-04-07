@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Class Node{
+class Node{
 private:
 	// If reusing this class modify the data needed accordingly
 	// "data" here is an example
@@ -11,7 +11,7 @@ private:
 
 public:
 	Node(); // Default constructor
-	Node(int data); // Constructor
+	Node(int dataInput); // Constructor
 
 	void setData(int dataInput);
 	int getData();
