@@ -1,54 +1,44 @@
 #include "Queue.h"
+#include <iostream>
+#include <string>
 
 Queue::Queue() {
+	size = 0;
 	capacity = DEFAULT_SIZE;
-	head = new Node[capacity];
-	tail = head;
+	buffer = new Node[capacity];
 }
 
 Queue::Queue(int inputCapacity) {
+	size = head = tail = 0;
 	capacity = inputCapacity;
-	head = new Node[capacity];
-	tail = head;
+	buffer = new Node[capacity];
 }
 
 void Queue::enqueue(Node inputNode) {
-	if (size >= capacity) {
-		return; // Either full or need to compact
+	// First check if the queue is full
+	if (tail == capacity) {
+		if (compact) {
+			buffer[tail] = inputNode;
+			tail++;
+			size++;
+			return;
+		}
+		else {
+			cout << "Queue is full!";
+			return;
+		}
 	}
-	else {
-		tail = &inputNode;
-		tail++;
-	}
+
+	buffer[tail] = inputNode;
+	tail++;
+	size++;
 }
 
 Node Queue::dequeue() {
-	Node* temp = head;
-	head++;
-	return *temp;
-}
-
-Node* Queue::getHead() {
-	return head;
-}
-
-Node* Queue::getTail() {
-	return tail;
-}
-
-int Queue::getSize() {
-	return size;
-}
-
-int Queue::getCapacity() {
-	return capacity;
-}
-
-bool Queue::isEmpty() {
-	if (!head) {
-		return true;
+	// Check if the queue is empty
+	if (isEmpty()) {
+		return;
 	}
-	else {
-		return false;
-	}
+
+
 }
