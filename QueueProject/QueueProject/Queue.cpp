@@ -24,7 +24,7 @@ void Queue::enqueue(Node inputNode) {
 			return;
 		}
 		else {
-			cout << "Queue is full!";
+			cout << "Queue is full!\n";
 			return;
 		}
 	}
@@ -44,6 +44,7 @@ Node* Queue::dequeue() {
 
 	temp = head;
 	head++;
+	size--;
 	return &buffer[temp];
 }
 
@@ -56,11 +57,21 @@ int Queue::getCapacity() {
 }
 
 bool Queue::compact() {
-	if (head == 0) {
+	int count = 0;
+	if (head == 0) { // This means the queue is full
 		return false;
 	}
 	else {
-		// Compact the queue
+		while (head != 0) {
+			head--;
+			count++;
+		}
+		for (int i = count + 1; i < capacity; i++) {
+			buffer[i - count] = buffer[i];
+		}
+		for (int j = capacity - count; j < capacity; j++) {
+			buffer[j].data = 0;
+		}
 		return true;
 	}
 }
@@ -75,7 +86,9 @@ bool Queue::isEmpty() {
 }
 
 void Queue::printQueue() {
-
+	for (int i = 0; i < size; i++) {
+		cout << "Node " << i << " data = " << buffer[i].data << endl;
+	}
 }
 
 Queue::~Queue() {
