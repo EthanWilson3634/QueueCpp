@@ -6,8 +6,13 @@
 using namespace std;
 
 typedef struct Node {
-	int iData;
-	string sData;
+	int data;
+	Node(int input) {
+		data = input;
+	}
+	Node() {
+		data = 0;
+	}
 
 }Node;
 
@@ -23,11 +28,12 @@ public:
 	Queue(int inputCapacity); // Constructor
 	~Queue(); // Desctructor
 	void enqueue(Node inputNode);
-	Node dequeue();
+	Node *dequeue();
 	int getSize();
 	int getCapacity();
 	bool compact();
 	bool isEmpty();
+	void printQueue();
 
 };
 
