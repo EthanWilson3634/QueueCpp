@@ -28,7 +28,7 @@ public:
 	Queue(int inputCapacity); // Constructor
 	~Queue(); // Desctructor
 	void enqueue(Node inputNode);
-	Node *dequeue();
+	Node* dequeue();
 	int getSize();
 	int getCapacity();
 	bool compact();

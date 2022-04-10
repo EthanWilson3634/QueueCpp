@@ -35,17 +35,18 @@ void Queue::enqueue(Node inputNode) {
 }
 
 Node* Queue::dequeue() {
-	int temp;
+	Node* temp;
 
 	// Check if the queue is empty
 	if (isEmpty()) {
 		return nullptr;
 	}
 
-	temp = head;
+	temp = &buffer[head];
+	buffer[head].data = 0;
 	head++;
 	size--;
-	return &buffer[temp];
+	return temp;
 }
 
 int Queue::getSize() {
@@ -66,12 +67,13 @@ bool Queue::compact() {
 			head--;
 			count++;
 		}
-		for (int i = count + 1; i < capacity; i++) {
+		for (int i = count; i < capacity; i++) {
 			buffer[i - count] = buffer[i];
 		}
 		for (int j = capacity - count; j < capacity; j++) {
 			buffer[j].data = 0;
 		}
+		tail = size;
 		return true;
 	}
 }
@@ -86,8 +88,8 @@ bool Queue::isEmpty() {
 }
 
 void Queue::printQueue() {
-	for (int i = 0; i < size; i++) {
-		cout << "Node " << i << " data = " << buffer[i].data << endl;
+	for (int i = head; i < tail; i++) {
+		cout << "Data = " << buffer[i].data << endl;
 	}
 }
 
